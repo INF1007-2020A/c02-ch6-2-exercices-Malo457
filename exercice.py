@@ -8,19 +8,34 @@ import itertools
 
 
 def get_even_keys(dictionary):
-	return {}
+	return {k for k in dictionary.keys() if k % 2 == 0}
 
 def join_dictionaries(dictionaries):
-	return {}
+	# Il existe aussi la fonction .update()
+	return {key : value for d in dictionaries for key, value in d.items()}
 
 def dictionary_from_lists(keys, values):
-	return {}
+	longueur = min(len(keys), len(values))
+	dictionary = {}
+	for i in range(0, longueur):
+		dict = {keys[i]:values[i]}
+		dictionary.update(dict)
+	return dictionary
+	#return {keys[i]:values[i] for i in range(min(len(keys, len(values))))}
 
-def get_greatest_values(dictionnary, num_values):
-	return []
+def get_greatest_values(dictionary, num_values):
+	result = []
+	dict = sorted(dictionary.values(), reverse=True)
+	for i in range(0, num_values):
+		result.append(dict[i])
+	return result
 
-def get_sum_values_from_key(dictionnaries, key):
-	return 0
+def get_sum_values_from_key(dictionaries, key):
+	sum = 0
+	for d in dictionaries:
+		if d.get(key) is not None:
+			sum += d.get(key)
+	return sum
 
 
 if __name__ == "__main__":
